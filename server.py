@@ -7,7 +7,7 @@ latest_control_data = None
 
 async def websocket_handler(request):
     global latest_control_data
-    ws = web.WebSocketResponse(protocols=['arduino'])  # 允許 arduino 子協議
+    ws = web.WebSocketResponse()  # 允許 arduino 子協議
     await ws.prepare(request)
 
     print(f"[+] Client connected")
@@ -41,4 +41,5 @@ app.router.add_get("/ws", websocket_handler)
 
 PORT = int(os.environ.get("PORT", 8080))
 web.run_app(app, port=PORT)
+
 
